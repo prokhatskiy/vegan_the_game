@@ -1,0 +1,24 @@
+{
+  "name": "vegan_the_game",
+  "version": "0.0.1",
+  "description": "The game about little vegan boy",
+  "main": "gulpfile.js",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prokhatskiy/vegan_the_game.git"
+  },
+  "keywords": [
+    "game",
+    "canvas",
+    "nodejs"
+  ],
+  "author": "Artem Prokhatskyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prokhatskiy/vegan_the_game/issues"
+  },
+  "homepage": "https://github.com/prokhatskiy/vegan_the_game"
+}
