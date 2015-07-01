@@ -3,19 +3,13 @@
 (function() {
     var app = this;
 
+    //Private method
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
     var Meal = function _Meal(options) {
         var _this = this;
-
-        //Private properties
-        var options = options || {};
-        var props = {
-            canvasWidth: options.canvasWidth || 100,
-            canvasHeight: options.canvasHeight || 100,
-            step: options.step || 1000,
-            type: options.type || 'meat',
-            x: options.x || 0,
-            y: options.y || 50
-        };
 
         this.getType = function _getType() {
             return props.type;
@@ -35,6 +29,19 @@
         this.getCanvasSize = function _getCanvasSize() {
             return {height: props.canvasHeight, width: props.canvasWidth};
         };
+
+        //Private properties
+        var options = options || {};
+        var props = {
+            canvasWidth: options.canvasWidth || 100,
+            canvasHeight: options.canvasHeight || 100,
+            step: options.step || 1000,
+            type: this.pickType()
+        };
+
+        var startPos = this.setStartPosition();
+
+        this.setPosition(startPos.x, startPos.y);
 
         this.directon = ((props.x === props.canvasWidth || props.y === props.canvasHeight) ? '-' : '+') +  (((props.x === props.canvasWidth || props.x === props.canvasHeight)) ? 'x' : 'y');
 
@@ -73,8 +80,36 @@
 
     Meal.prototype.destroy = function _destroy() {
         clearInterval(this.counter);
-        console.log('!!!' + this.getPosition());
     };
+
+    Meal.prototype.setStartPosition = function _setStartPosition() {
+        var x,
+            y,
+            canvas = this.getCanvasSize(),
+            side = getRandomInt(1,4);
+
+        switch (side) {
+            case 1:
+                y = canvas.height; x = getRandomInt(1, canvas.width - 1); break;
+            case 2:
+                x = canvas.width; y = getRandomInt(1, canvas.height - 1); break;
+            case 3:
+                y = 0; x = getRandomInt(1, canvas.width - 1); break;
+            case 4:
+                x = 0; y = getRandomInt(1, canvas.height - 1); break;
+        }
+
+        return {x: x, y: y};
+    };
+
+    Meal.prototype.pickType = function _pickType() {
+        if(getRandomInt(0, 1)) {
+            return 'meat';
+        }
+
+        return 'vegetable';
+    };
+
 
     app.Meal = Meal;
 
