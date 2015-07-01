@@ -15,8 +15,8 @@
         var props = {
             x: 0,
             y: 0,
-            canvasHeight: options.canvasHeight || 0,
-            canvasWidth: options.canvasWidth || 0,
+            canvasHeight: options.canvasHeight || 100,
+            canvasWidth: options.canvasWidth || 100,
             playerName: options.playerName || 'Player'
         };
 

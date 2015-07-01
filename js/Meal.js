@@ -13,8 +13,8 @@
             canvasHeight: options.canvasHeight || 100,
             step: options.step || 1000,
             type: options.type || 'meat',
-            x: options.x || 50,
-            y: options.y || 100
+            x: options.x || 0,
+            y: options.y || 50
         };
 
         this.getType = function _getType() {
@@ -47,14 +47,10 @@
         var position = this.getPosition();
         var canvas = this.getCanvasSize();
 
-        return ((position.x < canvas.width && position.x > 0) || (position.y < canvas.height && position.y > 0));
+        return ((position.x < canvas.width && position.x > 0) && (position.y < canvas.height && position.y > 0));
     };
 
     Meal.prototype.go = function _go() {
-        if(!this.checkPosition()) {
-            this.destroy();
-        }
-
         var position = this.getPosition();
 
         switch(this.directon) {
@@ -68,12 +64,16 @@
                 this.setPosition(position.x, position.y + 1); break;
         }
 
+        if(!this.checkPosition()) {
+            this.destroy();
+        }
+
         return this;
     };
 
     Meal.prototype.destroy = function _destroy() {
         clearInterval(this.counter);
-        console.log(''this.getPosition());
+        console.log('!!!' + this.getPosition());
     };
 
     app.Meal = Meal;
