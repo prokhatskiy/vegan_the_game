@@ -43,12 +43,16 @@
 
             return this.getPosition();
         };
+
+        this.score = 0;
+
+        this.listenEvents();
     };
 
     Player.prototype.checkPosition = function _checkPosition(x, y) {
         var canvasSize = this.getCanvasSize();
 
-        if((x < 0) || (x > canvasSize.width) || (y < 0) || (y > canvasSize.height)) {
+        if ((x < 0) || (x > canvasSize.width) || (y < 0) || (y > canvasSize.height)) {
             return false;
         }
         return true;
@@ -59,16 +63,41 @@
 
         switch(direction) {
             case 'up':
-                return this.setPosition(position.x, position.y + 1); break;
+                return this.setPosition(position.x, position.y - 1); break;
             case 'right':
                 return this.setPosition(position.x + 1, position.y); break;
             case 'down':
-                return this.setPosition(position.x, position.y - 1); break;
+                return this.setPosition(position.x, position.y + 1); break;
             case 'left':
                 return this.setPosition(position.x - 1, position.y); break;
             default:
                 return false;
         }
+    };
+
+    Player.prototype.listenEvents = function _listenEvents() {
+        var _this = this;
+        var currentPos = _this.getPosition();
+
+        app.subscribe('go:up', function() {
+            _this.go('up');
+        });
+
+        app.subscribe('go:right', function() {
+            _this.go('right');
+        });
+
+        app.subscribe('go:down', function() {
+            _this.go('down');
+        });
+
+        app.subscribe('go:left', function() {
+            _this.go('left');
+        });
+
+        app.subscribe('eat', function() {
+           _this.score += 100;
+        });
     };
 
     app.Player = Player;

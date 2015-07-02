@@ -35,8 +35,8 @@
         this.ctx = this.canvas.getContext('2d');
         this.canvasWidthPx = this.canvas.width;
         this.canvasHeightPx = this.canvas.height;
-        this.canvasWidth = 50;
-        this.canvasHeight = 50;
+        this.canvasWidth = 15;
+        this.canvasHeight = 15;
 
         this.widthK = this.canvasWidthPx / this.canvasWidth;
         this.heightK = this.canvasHeightPx / this.canvasHeight;

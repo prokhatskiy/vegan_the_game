@@ -9,12 +9,55 @@
                 display: block;
                 border: 1px solid #000;
             }
+
+            .game-over{
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(255,255,255, .9);
+            }
+
+            .game-over__text{
+                position: absolute;
+                top: 50%;
+                margin-top: -50px;
+                height: 100px;
+                line-height: 100px;
+                font-size: 100px;
+                color: red;
+                text-align: center;
+                left: 0;
+                width: 100%;
+                font-family: sans-serif;
+                font-weight: bold;
+            }
+
+            .gameOver .game-over{
+                display: block;
+            }
+
+            .score{
+                text-align: center;
+                margin-top: 20px;
+                font-family: sans-serif;
+                color: #0ABA1D;
+                font-size: 30px;
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
         <canvas id="gameCanvas" width="500" height="500"></canvas>
+        <div id="score" class="score"></div>
 
         <script src="js/build/app.min.js"></script>
+
+        <div class="game-over">
+            <div class="game-over__text">Ты умер!</div>
+        </div>
 
         <script>
             window.VGN.canvas = new window.VGN.Canvas();
