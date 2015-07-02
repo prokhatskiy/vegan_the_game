@@ -11,6 +11,8 @@
     var Meal = function _Meal(options) {
         var _this = this;
 
+        this.alive = true;
+
         this.getType = function _getType() {
             return props.type;
         };
@@ -33,9 +35,9 @@
         //Private properties
         var options = options || {};
         var props = {
-            canvasWidth: options.canvasWidth || 100,
-            canvasHeight: options.canvasHeight || 100,
-            step: options.step || 1000,
+            canvasWidth: options.canvasWidth,
+            canvasHeight: options.canvasHeight,
+            step: options.step,
             type: this.pickType()
         };
 
@@ -80,6 +82,8 @@
 
     Meal.prototype.destroy = function _destroy() {
         clearInterval(this.counter);
+
+        this.alive = false;
     };
 
     Meal.prototype.setStartPosition = function _setStartPosition() {

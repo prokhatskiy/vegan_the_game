@@ -4,14 +4,16 @@
     var app = this;
     var instance;
 
-    var config = {
-        canvasWidth: 100,
-        canvasHeight: 100,
-        stepDelay: 1000,
-        appearDelay: 1000
-    };
+    var Game = function _Game(config) {
+        var config = config || {};
 
-    var Game = function _Game() {
+        this.config = {
+            canvasWidth: config.canvasWidth,
+            canvasHeight: config.canvasHeight,
+            stepDelay: 100,
+            appearDelay: 500
+        };
+
         if(instance !== undefined) {
             return instance;
         }
@@ -26,8 +28,8 @@
         this.time = 0;
 
         this.player = new app.Player({
-            canvasWidth: config.canvasWidth,
-            canvasHeight: config.canvasHeight
+            canvasWidth: this.config.canvasWidth,
+            canvasHeight: this.config.canvasHeight
         });
 
         this.startCreatingOfFood();
@@ -38,7 +40,7 @@
     };
 
     Game.prototype.getCanvasSize = function _getCanvasSize() {
-      return {width: config.canvasWidth, height: config.canvasHeight};
+      return {width: this.config.canvasWidth, height: this.config.canvasHeight};
     };
 
     Game.prototype.bindKeyboard = function _bindKeyboard() {
@@ -56,11 +58,11 @@
         var _this = this;
         setInterval(function() {
             _this.food.push(new app.Meal({
-                canvasWidth: config.canvasWidth,
-                canvasHeight: config.canvasHeight,
-                delay: config.stepDelay
+                canvasWidth: _this.config.canvasWidth,
+                canvasHeight: _this.config.canvasHeight,
+                step: _this.config.stepDelay
             }));
-        }, config.appearDelay);
+        }, _this.config.appearDelay);
     };
 
     app.Game = Game;

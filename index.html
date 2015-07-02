@@ -3,10 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <title>The Vegan Boy</title>
+        <style>
+            canvas {
+                margin: 10px auto;
+                display: block;
+                border: 1px solid #000;
+            }
+        </style>
     </head>
     <body>
-        <canvas id="gameCanvas"></canvas>
+        <canvas id="gameCanvas" width="500" height="500"></canvas>
 
         <script src="js/build/app.min.js"></script>
+
+        <script>
+            window.VGN.canvas = new window.VGN.Canvas();
+        </script>
     </body>
 </html>
