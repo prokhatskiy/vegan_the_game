@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 
 var path = {
-    js: ['js/events.js', 'js/Game.js', 'js/Meal.js', 'js/Player.js', 'js/app.js']
+    js: ['js/events.js', 'js/Game.js', 'js/Meal.js', 'js/Player.js', 'js/Canvas.js']
 };
 
 gulp.task('js', function() {
